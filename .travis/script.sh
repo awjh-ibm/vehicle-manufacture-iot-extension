@@ -36,3 +36,5 @@ do
     cd ${dir}
     npm test 2>&1
 done
+
+./image-deploy.sh
