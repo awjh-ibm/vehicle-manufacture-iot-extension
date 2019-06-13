@@ -43,11 +43,13 @@ DOCKER_CONNECTION_NAME="connection.json"
 
 APPS_DIR="${BASEDIR}/../apps"
 
-for TYPE in "${TYPES[@]}"; do
-    OUTPUT_FOLDER="$APPS_DIR/${!APP_NAME}/vehiclemanufacture_fabric"
-    OUTPUT_FILE_NAME="${TYPE}_CONNECTION_NAME"
+for APP_NAME in "manufacturer" "insurer" "regulator"; do
+    for TYPE in "${TYPES[@]}"; do
+        OUTPUT_FOLDER="$APPS_DIR/${APP_NAME}/vehiclemanufacture_fabric"
+        OUTPUT_FILE_NAME="${TYPE}_CONNECTION_NAME"
 
-    rm -f $OUTPUT_FOLDER/${!OUTPUT_FILE_NAME}
+        rm -f $OUTPUT_FOLDER/${!OUTPUT_FILE_NAME}
+    done
 done
 
 echo '########################################'

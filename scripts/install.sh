@@ -77,7 +77,7 @@ ORGS=("ARIUM" "VDA" "PRINCE") # MUST MATCH STARTS OF VARS ABOVE TO MAKE LOOPS WO
 TYPES=("DOCKER" "LOCAL") # MUST MATCH THE _TYPE IN THE ABOVE VARS TO MAKE LOOPS WORK
 
 # SETS LOCALHOST FOR ALL OF THE ORGS
-for ORG in $ORGS; do
+for ORG in "${ORGS[@]}"; do
     eval "${ORG}_PEER_LOCAL_URL"="$PEER_LOCAL_URL"
     eval "${ORG}_CA_LOCAL_URL"="$PEER_LOCAL_URL"
 done
@@ -154,24 +154,24 @@ for TYPE in "${TYPES[@]}"; do
     rm -f ${!TMP_FILE}
 done
 
-# echo "#####################"
-# echo "# CHAINCODE INSTALL #"
-# echo "#####################"
+echo "#####################"
+echo "# CHAINCODE INSTALL #"
+echo "#####################"
 
-# docker-compose -f $NETWORK_DOCKER_COMPOSE_DIR/docker-compose-cli.yaml up -d
+docker-compose -f $NETWORK_DOCKER_COMPOSE_DIR/docker-compose-cli.yaml up -d
 
-# docker exec cli bash -c "apk add nodejs nodejs-npm python make g++"
-# docker exec cli bash -c 'cd /etc/hyperledger/contract; npm install; npm run build'
+docker exec cli bash -c "apk add nodejs nodejs-npm python make g++"
+docker exec cli bash -c 'cd /etc/hyperledger/contract; npm install; npm run build'
 
-# docker-compose -f $NETWORK_DOCKER_COMPOSE_DIR/docker-compose-cli.yaml down --volumes
+docker-compose -f $NETWORK_DOCKER_COMPOSE_DIR/docker-compose-cli.yaml down --volumes
 
-# echo "###################"
-# echo "# BUILD CLI_TOOLS #"
-# echo "###################"
-# cd $BASEDIR/cli_tools
-# npm install
-# npm run build
-# cd $BASEDIR
+echo "###################"
+echo "# BUILD CLI_TOOLS #"
+echo "###################"
+cd $BASEDIR/cli_tools
+npm install
+npm run build
+cd $BASEDIR
 
 echo "#############################"
 echo "# CLEAN ENV VARS FOR DOCKER #"

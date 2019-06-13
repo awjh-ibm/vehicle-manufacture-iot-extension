@@ -110,9 +110,6 @@
             "tlsOptions": {
                 "trustedRoots": ["{{MSP_DIR}}/peerOrganizations/arium.com/tlsca/tlsca.arium.com-cert.pem"]
             },
-            "tlsCACerts": {
-                "path": "{{MSP_DIR}}/peerOrganizations/arium.com/tlsca/tlsca.arium.com-cert.pem"
-            },
             "httpOptions": {
                 "verify": false
             }
@@ -121,10 +118,7 @@
             "url": "https://{{VDA_CA_URL}}:{{VDA_CA_PORT}}",
             "caName": "ca-vda",
             "tlsOptions": {
-                "trustedRoots": ["{{MSP_DIR}}/peerOrganizations/arium.com/tlsca/tlsca.arium.com-cert.pem"]
-            },
-            "tlsCACerts": {
-                "path": "{{MSP_DIR}}/peerOrganizations/vda.com/tlsca/tlsca.vda.com-cert.pem"
+                "trustedRoots": ["{{MSP_DIR}}/peerOrganizations/vda.com/tlsca/tlsca.vda.com-cert.pem"]
             },
             "httpOptions": {
                 "verify": false
@@ -134,10 +128,7 @@
             "url": "https://{{PRINCE_CA_URL}}:{{PRINCE_CA_PORT}}",
             "caName": "ca-princeinsurance",
             "tlsOptions": {
-                "trustedRoots": ["{{MSP_DIR}}/peerOrganizations/arium.com/tlsca/tlsca.arium.com-cert.pem"]
-            },
-            "tlsCACerts": {
-                "path": "{{MSP_DIR}}/peerOrganizations/arium.com/tlsca/tlsca.arium.com-cert.pem"
+                "trustedRoots": ["{{MSP_DIR}}/peerOrganizations/prince-insurance.com/tlsca/tlsca.prince-insurance.com-cert.pem"]
             },
             "httpOptions": {
                 "verify": false
