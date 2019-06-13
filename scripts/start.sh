@@ -114,7 +114,7 @@ VDA_ADMIN_KEY=$BASEDIR/tmp/vda_key.pem
 PRINCE_ADMIN_CERT=$BASEDIR/tmp/prince_cert.pem
 PRINCE_ADMIN_KEY=$BASEDIR/tmp/prince_key.pem
 
-mkdir $BASEDIR/tmp
+mkdir -p $BASEDIR/tmp
 
 FABRIC_CA_CLIENT_HOME=/root/fabric-ca/clients/admin
 
