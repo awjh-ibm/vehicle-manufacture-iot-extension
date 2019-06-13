@@ -26,7 +26,7 @@ exec > >(tee -i $LOG_PATH/install.log)
 exec 2>&1
 
 echo "###########################"
-echo "# set env vars for docker #"
+echo "# SET ENV VARS FOR DOCKER #"
 echo "###########################"
 export $(cat $NETWORK_DOCKER_COMPOSE_DIR/.env | xargs)
 
@@ -66,12 +66,12 @@ VDA_CA_LOCAL_PORT="8054"
 
 PRINCE_ORG_NAME="PrinceInsurance"
 PRINCE_APP_NAME="insurer"
-PRINCE_INSURANCE_PEER_DOCKER_URL="peer0.prince-insurance.com"
-PRINCE_INSURANCE_PEER_PORT="9051"
-PRINCE_INSURANCE_PEER_EVENT_PORT="9053"
-PRINCE_INSURANCE_CA_DOCKER_URL="tlsca.prince-insurance.com"
-PRINCE_INSURANCE_CA_DOCKER_PORT="7054"
-PRINCE_INSURANCE_CA_LOCAL_PORT="9054"
+PRINCE_PEER_DOCKER_URL="peer0.prince-insurance.com"
+PRINCE_PEER_PORT="9051"
+PRINCE_PEER_EVENT_PORT="9053"
+PRINCE_CA_DOCKER_URL="tlsca.prince-insurance.com"
+PRINCE_CA_DOCKER_PORT="7054"
+PRINCE_CA_LOCAL_PORT="9054"
 
 ORGS=("ARIUM" "VDA" "PRINCE") # MUST MATCH STARTS OF VARS ABOVE TO MAKE LOOPS WORK
 TYPES=("DOCKER" "LOCAL") # MUST MATCH THE _TYPE IN THE ABOVE VARS TO MAKE LOOPS WORK
@@ -125,7 +125,7 @@ for TYPE in "${TYPES[@]}"; do
     for ORG in "${ORGS[@]}"; do
         PEER_URL="${ORG}_PEER_${TYPE}_URL"
         CA_URL="${ORG}_CA_${TYPE}_URL"
-        CA_PORT="${VDA}_CA_${TYPE}_PORT"
+        CA_PORT="${ORG}_CA_${TYPE}_PORT"
 
         sed -i '' -e 's#{{'${ORG}'_PEER_URL}}#'${!PEER_URL}'#g' $TMP_FILE
         sed -i '' -e 's#{{'${ORG}'_CA_URL}}#'${!CA_URL}'#g' $TMP_FILE
