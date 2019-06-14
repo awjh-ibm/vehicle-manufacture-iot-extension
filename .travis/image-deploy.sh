@@ -67,7 +67,7 @@ if [ -z "$TRAVIS_TAG"]; then
             echo "==> Skipping deploy. Not merging into master"
         fi
     else
-        echo "==> Skipping deploy. Not a pull request"
+        echo "==> Skipping deploy. Is a pull request"
     fi
 else
     build ${TRAVIS_TAG}
