@@ -22,7 +22,7 @@ import { Participant, Task } from '../participants';
 import { VehicleManufactureNetClientIdentity } from '../utils/client-identity';
 import { VehicleManufactureNetContext } from '../utils/context';
 import { ParticipantsContract } from './participants';
-const should = chai.should();
+chai.should();
 chai.use(sinonChai);
 chai.use(chaiAsPromied);
 

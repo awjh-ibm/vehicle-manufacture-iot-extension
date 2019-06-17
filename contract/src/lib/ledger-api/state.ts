@@ -17,6 +17,7 @@ limitations under the License.
 import { Object as ContractObject, Property } from 'fabric-contract-api';
 import { newLogger } from 'fabric-shim';
 import * as getParams from 'get-params';
+import 'reflect-metadata';
 
 const logger = newLogger('STATE');
 
