@@ -22,7 +22,7 @@ import { Asset } from './asset';
 chai.should();
 chai.use(sinonChai);
 
-describe('#Asset', () => {
+describe ('#Asset', () => {
 
     let sandbox: sinon.SinonSandbox;
 
@@ -34,13 +34,13 @@ describe('#Asset', () => {
         sandbox.restore();
     });
 
-    describe('generateClass', () => {
+    describe ('generateClass', () => {
         it ('should return the generated class', () => {
             Asset.generateClass('someType').should.deep.equal(NetworkName + '.assets.someType');
         });
     });
 
-    describe('constructor', () => {
+    describe ('constructor', () => {
         it ('should setup the key, class and id', () => {
             sandbox.stub(Asset, 'generateClass').withArgs('some type').returns('some class');
             sandbox.stub(State, 'makeKey').withArgs(['some id']).returns('some key');
@@ -53,7 +53,7 @@ describe('#Asset', () => {
         });
     });
 
-    describe('serialize', () => {
+    describe ('serialize', () => {
         it ('should remove underscore properties and use non underscored version', () => {
             const mockAsset = {
                 class: 'some class',

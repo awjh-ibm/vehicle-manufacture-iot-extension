@@ -28,7 +28,7 @@ import { VehicleContract as VehicleContractImport } from './vehicle';
 chai.should();
 chai.use(sinonChai);
 
-describe('#VehicleContract', () => {
+describe ('#VehicleContract', () => {
     let VehicleContract;
 
     let sandbox: sinon.SinonSandbox;
@@ -100,14 +100,14 @@ describe('#VehicleContract', () => {
         mockery.disable();
     });
 
-    describe('createContext', ()  => {
+    describe ('createContext', ()  => {
         it('should create a VehicleManufacturerNetContext instance', () => {
             const newCtx = contract.createContext();
             newCtx.should.be.instanceof(VehicleManufactureNetContext);
         });
     });
 
-    describe('placeOrder', () => {
+    describe ('placeOrder', () => {
         const fakeVehicleDetails = {
             colour: 'some colour',
             makeId: 'some make',
@@ -170,7 +170,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getOrders', () => {
+    describe ('getOrders', () => {
         it ('should error when the caller is not allowed to read orders', async () => {
             participant.hasRole.returns(true).withArgs(Roles.ORDER_READ).returns(false);
 
@@ -212,7 +212,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getOrder', () => {
+    describe ('getOrder', () => {
         it ('should error when the caller is not allowed to read orders', async () => {
             participant.hasRole.returns(true).withArgs(Roles.ORDER_READ).returns(false);
 
@@ -537,7 +537,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getVehicles', () => {
+    describe ('getVehicles', () => {
         it ('should error when the caller is not allowed to read vehicles', async () => {
             participant.hasRole.returns(true).withArgs(Roles.VEHICLE_READ).returns(false);
 
@@ -597,7 +597,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getVehicle', () => {
+    describe ('getVehicle', () => {
         it ('should error when the caller is not allowed to read vehicles', async () => {
             participant.hasRole.returns(true).withArgs(Roles.VEHICLE_READ).returns(false);
 
@@ -655,7 +655,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('createPolicy', () => {
+    describe ('createPolicy', () => {
         it ('should error when the caller is not allowed to create policies', async () => {
             participant.hasRole.returns(true).withArgs(Roles.POLICY_CREATE).returns(false);
 
@@ -717,7 +717,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getPolicies', () => {
+    describe ('getPolicies', () => {
         it ('should error when the caller is not allowed to read policies', async () => {
             participant.hasRole.returns(true).withArgs(Roles.POLICY_READ).returns(false);
 
@@ -759,7 +759,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getPolicy', () => {
+    describe ('getPolicy', () => {
         it ('should error when the caller is not allowed to read policies', async () => {
             participant.hasRole.returns(true).withArgs(Roles.POLICY_READ).returns(false);
 
@@ -815,7 +815,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('addUsageEvent', async () => {
+    describe ('addUsageEvent', async () => {
         it ('should error when the caller is not allowed to create usage event', async () => {
             participant.hasRole.returns(true).withArgs(Roles.USAGE_EVENT_CREATE).returns(false);
 
@@ -858,7 +858,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getUsageEvents', async () => {
+    describe ('getUsageEvents', async () => {
         it ('should error when the caller is not allowed to read usage events', async () => {
             participant.hasRole.returns(true).withArgs(Roles.USAGE_EVENT_READ).returns(false);
 
@@ -885,7 +885,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getUsageEvents', async () => {
+    describe ('getUsageEvents', async () => {
         it ('should error when get vehicle errors', async () => {
             sandbox.stub(contract, 'getVehicle').resolves()
                 .withArgs(ctx as any, 'some vin').rejects(Error('some error'));
@@ -920,7 +920,7 @@ describe('#VehicleContract', () => {
         });
     });
 
-    describe('getPolicyEvents', async () => {
+    describe ('getPolicyEvents', async () => {
         const fakePolicy = {
             endDate: 2000,
             startDate: 1000,

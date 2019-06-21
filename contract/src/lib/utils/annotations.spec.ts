@@ -21,7 +21,7 @@ chai.use(sinonChai);
 
 // tslint:disable:max-classes-per-file
 
-describe('#Annotations', () => {
+describe ('#Annotations', () => {
     let sandbox: sinon.SinonSandbox;
 
     before(() => {
@@ -32,7 +32,7 @@ describe('#Annotations', () => {
         sandbox.restore();
     });
 
-    describe('NotRequired', () => {
+    describe ('NotRequired', () => {
         it ('should put question mark next to annotated params name in functions metadata when defined', () => {
             const getMetadataStub = sandbox.stub(Reflect, 'getMetadata').returns(['param1', 'param2']);
             const defineMetadataStub = sandbox.stub(Reflect, 'defineMetadata');

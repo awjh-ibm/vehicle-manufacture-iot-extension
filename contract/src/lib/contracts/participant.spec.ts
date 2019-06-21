@@ -26,7 +26,7 @@ chai.should();
 chai.use(sinonChai);
 chai.use(chaiAsPromied);
 
-describe('#ParticipantContract', () => {
+describe ('#ParticipantContract', () => {
     let sandbox: sinon.SinonSandbox;
     let contract: ParticipantsContract;
     let ctx: sinon.SinonStubbedInstance<VehicleManufactureNetContext>;
@@ -53,14 +53,14 @@ describe('#ParticipantContract', () => {
         sandbox.restore();
     });
 
-    describe('createContext', ()  => {
+    describe ('createContext', ()  => {
         it('should create a VehicleManufacturerNetContext instance', () => {
             const newCtx = contract.createContext();
             newCtx.should.be.instanceof(VehicleManufactureNetContext);
         });
     });
 
-    describe('getOrganizations', async () => {
+    describe ('getOrganizations', async () => {
         it('should return everything from the organization list', async () => {
             const stubOrgs = [new Organization('1', 'org1', 'regulator')];
             organizationList.getAll.resolves(stubOrgs);
@@ -69,7 +69,7 @@ describe('#ParticipantContract', () => {
         });
     });
 
-    describe('registerRegistrar', () => {
+    describe ('registerRegistrar', () => {
         it('should throw if the attribute Roles.PARTICIPANT_CREATE is not "y"', async () => {
             stubAttribute(ctx, RolesPrefix + Roles.PARTICIPANT_CREATE, 'n');
             await contract.registerRegistrar(ctx as any, 'UK', 'LG')
@@ -103,7 +103,7 @@ describe('#ParticipantContract', () => {
         }
     });
 
-    describe('registerTask', () => {
+    describe ('registerTask', () => {
         let participant;
         let organization;
 
@@ -131,7 +131,7 @@ describe('#ParticipantContract', () => {
         });
     });
 
-    describe('registerOrganization', () => {
+    describe ('registerOrganization', () => {
         it('should register an organization', async () => {
             organizationList.exists.resolves(false);
             clientIdentity.newOrganizationInstance.returns('organization');

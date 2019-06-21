@@ -25,7 +25,7 @@ interface ISerializer {
     serialize: (result: any) => {};
 }
 
-describe('#Serializer', () => {
+describe ('#Serializer', () => {
     let serializer: ISerializer;
     let sandbox: sinon.SinonSandbox;
 
@@ -41,7 +41,7 @@ describe('#Serializer', () => {
         sandbox.restore();
     });
 
-    describe('toBuffer', () => {
+    describe ('toBuffer', () => {
         it ('should call serialize and then return the super to buffer', () => {
             const myBuffer = Buffer.from('some buffer');
 
@@ -55,7 +55,7 @@ describe('#Serializer', () => {
         });
     });
 
-    describe('serialize', () => {
+    describe ('serialize', () => {
         it ('should return null when no result', () => {
             should.equal((serializer as any).serialize(null), null);
         });

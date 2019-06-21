@@ -11,6 +11,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
+
 import * as chai from 'chai';
 import * as sinon from 'sinon';
 import * as sinonChai from 'sinon-chai';
@@ -21,7 +22,7 @@ import { Order, OrderStatus } from './order';
 const should = chai.should();
 chai.use(sinonChai);
 
-describe('#Order', () => {
+describe ('#Order', () => {
     const mockVehicleDetails = {
         colour: 'some colour',
         makeId: 'some make',
@@ -44,7 +45,17 @@ describe('#Order', () => {
         sandbox.restore();
     });
 
-    describe('constructor', () => {
+    describe ('getClass', () => {
+        it('should call generate class with the class name', () => {
+            const generateClassSpy = sandbox.stub(Asset, 'generateClass');
+
+            Order.getClass();
+
+            generateClassSpy.should.have.been.calledOnceWithExactly(Order.name);
+        });
+    });
+
+    describe ('constructor', () => {
 
         beforeEach(() => {
             sandbox.stub(Asset, 'generateClass').withArgs('Order').returns('some class');
@@ -83,11 +94,69 @@ describe('#Order', () => {
         });
     });
 
-    describe('orderStatus', () => {
-        // test order status
+    describe ('orderStatus', () => {
+        it ('should error when trying to go backwards in status', () => {
+            const order = new Order(
+                'some id', mockVehicleDetails, OrderStatus.DELIVERED, mockOptions, 'some orderer', 1234567890,
+                'some vin',
+            );
+
+            (() => {
+                order.orderStatus = OrderStatus.DELIVERED - 1;
+            }).should.throw('Status of order cannot go backwards or remain the same');
+        });
+
+        it ('should error when trying to set same status', () => {
+            const order = new Order(
+                'some id', mockVehicleDetails, OrderStatus.DELIVERED, mockOptions, 'some orderer', 1234567890,
+                'some vin',
+            );
+
+            (() => {
+                order.orderStatus = OrderStatus.DELIVERED;
+            }).should.throw('Status of order cannot go backwards or remain the same');
+        });
+
+        it ('should error when trying to skip an order step', () => {
+            const order = new Order(
+                'some id', mockVehicleDetails, OrderStatus.VIN_ASSIGNED, mockOptions, 'some orderer', 1234567890,
+                'some vin',
+            );
+
+            (() => {
+                order.orderStatus = OrderStatus.DELIVERED;
+            }).should.throw('Cannot skip order status step');
+        });
+
+        it ('should change the order status', () => {
+            const order = new Order(
+                'some id', mockVehicleDetails, OrderStatus.VIN_ASSIGNED, mockOptions, 'some orderer', 1234567890,
+                'some vin',
+            );
+
+            order.orderStatus = OrderStatus.OWNER_ASSIGNED;
+
+            order.orderStatus.should.deep.equal(OrderStatus.OWNER_ASSIGNED);
+        });
     });
 
-    describe('madeByOrg', () => {
-        // test made by org
+    describe ('madeByOrg', () => {
+        it ('should return false when makeId does not match orgId', () => {
+            const order = new Order(
+                'some id', mockVehicleDetails, OrderStatus.VIN_ASSIGNED, mockOptions, 'some orderer', 1234567890,
+                'some vin',
+            );
+
+            order.madeByOrg('not' + mockVehicleDetails.makeId).should.deep.equal(false);
+        });
+
+        it ('should return true when makeId does match orgId', () => {
+            const order = new Order(
+                'some id', mockVehicleDetails, OrderStatus.VIN_ASSIGNED, mockOptions, 'some orderer', 1234567890,
+                'some vin',
+            );
+
+            order.madeByOrg(mockVehicleDetails.makeId).should.deep.equal(true);
+        });
     });
 });
