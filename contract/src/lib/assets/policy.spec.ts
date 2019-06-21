@@ -34,7 +34,7 @@ describe ('#Policy', () => {
     });
 
     describe ('getClass', () => {
-        it('should call generate class with the class name', () => {
+        it ('should call generate class with the class name', () => {
             const generateClassSpy = sandbox.stub(Asset, 'generateClass');
 
             Policy.getClass();

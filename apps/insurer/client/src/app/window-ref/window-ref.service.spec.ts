@@ -22,7 +22,7 @@ describe ('WindowRefService', () => {
     });
   });
 
-  it('should ...', inject([WindowRef], (service: WindowRef) => {
+  it ('should ...', inject([WindowRef], (service: WindowRef) => {
     expect(service).toBeTruthy();
   }));
 });
