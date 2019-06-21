@@ -54,14 +54,22 @@ describe ('#ParticipantContract', () => {
     });
 
     describe ('createContext', ()  => {
+<<<<<<< HEAD
         it ('should create a VehicleManufacturerNetContext instance', () => {
+=======
+        it('should create a VehicleManufacturerNetContext instance', () => {
+>>>>>>> 727ffa5... finished assets tests
             const newCtx = contract.createContext();
             newCtx.should.be.instanceof(VehicleManufactureNetContext);
         });
     });
 
     describe ('getOrganizations', async () => {
+<<<<<<< HEAD
         it ('should return everything from the organization list', async () => {
+=======
+        it('should return everything from the organization list', async () => {
+>>>>>>> 727ffa5... finished assets tests
             const stubOrgs = [new Organization('1', 'org1', 'regulator')];
             organizationList.getAll.resolves(stubOrgs);
             const orgs = await contract.getOrganizations(ctx as any);
@@ -70,7 +78,11 @@ describe ('#ParticipantContract', () => {
     });
 
     describe ('registerRegistrar', () => {
+<<<<<<< HEAD
         it ('should throw if the attribute Roles.PARTICIPANT_CREATE is not "y"', async () => {
+=======
+        it('should throw if the attribute Roles.PARTICIPANT_CREATE is not "y"', async () => {
+>>>>>>> 727ffa5... finished assets tests
             stubAttribute(ctx, RolesPrefix + Roles.PARTICIPANT_CREATE, 'n');
             await contract.registerRegistrar(ctx as any, 'UK', 'LG')
                 .should.be
@@ -132,7 +144,11 @@ describe ('#ParticipantContract', () => {
     });
 
     describe ('registerOrganization', () => {
+<<<<<<< HEAD
         it ('should register an organization', async () => {
+=======
+        it('should register an organization', async () => {
+>>>>>>> 727ffa5... finished assets tests
             organizationList.exists.resolves(false);
             clientIdentity.newOrganizationInstance.returns('organization');
             await (contract as any).registerOrganization(ctx as any, 'VDA', 'additionalInfo1', 'additionalInfo2');

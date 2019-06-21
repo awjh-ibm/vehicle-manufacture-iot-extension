@@ -52,7 +52,7 @@ describe ('#Asset', () => {
         });
     });
 
-    describe('serialize', () => {
+    describe ('serialize', () => {
         it ('should remove underscore properties and use non underscored version', () => {
             const mockAsset = {
                 class: 'some class',

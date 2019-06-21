@@ -101,7 +101,11 @@ describe ('#VehicleContract', () => {
     });
 
     describe ('createContext', ()  => {
+<<<<<<< HEAD
         it ('should create a VehicleManufacturerNetContext instance', () => {
+=======
+        it('should create a VehicleManufacturerNetContext instance', () => {
+>>>>>>> 727ffa5... finished assets tests
             const newCtx = contract.createContext();
             newCtx.should.be.instanceof(VehicleManufactureNetContext);
         });
