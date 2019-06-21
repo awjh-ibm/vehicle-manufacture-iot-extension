@@ -19,7 +19,7 @@ import { PolicyService } from './policy.service';
 import 'rxjs/add/observable/of';
 import { Observable } from 'rxjs';
 
-describe('AppComponent', () => {
+describe ('AppComponent', () => {
   let mockPolicyService;
 
   beforeEach(async(() => {

@@ -29,7 +29,7 @@ class MockPopupComponent {
   @Output() actioned;
 }
 
-describe('OverviewComponent', () => {
+describe ('OverviewComponent', () => {
   let component: OverviewComponent;
   let fixture: ComponentFixture<OverviewComponent>;
   let mockVehicleService;

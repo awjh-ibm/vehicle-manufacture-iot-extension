@@ -17,7 +17,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { AlertSidebarComponent } from './alert-sidebar.component';
 
-describe('AlertSidebarComponent', () => {
+describe ('AlertSidebarComponent', () => {
   let component: AlertSidebarComponent;
   let fixture: ComponentFixture<AlertSidebarComponent>;
 
