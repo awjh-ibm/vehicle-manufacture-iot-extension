@@ -1,9 +1,10 @@
 {
   "name": "vehicle-manufacture-contract",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "preinstall": "sh ./../scripts/generate-config.sh",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "start": "fabric-chaincode-node start",
     "start:docker": "mkdir tmp; docker exec arium_cli bash -c \"cd /etc/hyperledger/contract; npm rebuild\"; tsc-watch --onSuccess \"npm run start:all\"",
@@ -15,7 +16,8 @@
     "build:watch": "tsc -w",
     "prepublishOnly": "npm run build",
     "pretest": "npm run lint",
-    "test": "nyc mocha -r ts-node/register src/**/*.spec.ts"
+    "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
+    "test:functional": "mocha -r ts-node/register functionalTests/*"
   },
   "nyc": {
     "extension": [
@@ -24,7 +26,8 @@
     "exclude": [
       "coverage/**",
       "dist/**",
-      "**/*.spec.ts"
+      "**/*.spec.ts",
+      "functionalTests/**"
     ],
     "reporter": [
       "text-summary",
@@ -42,7 +45,7 @@
   "devDependencies": {
     "@types/chai": "^4.1.7",
     "@types/chai-as-promised": "^7.1.0",
-    "@types/mocha": "^5.2.5",
+    "@types/mocha": "^5.2.7",
     "@types/mockery": "^1.4.29",
     "@types/node": "11.12.2",
     "@types/sinon": "^5.0.7",
@@ -50,8 +53,8 @@
     "@types/uuid": "^3.4.4",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "fabric-client": "^1.4.1",
-    "fabric-network": "^1.4.1",
+    "fabric-client": "unstable-1.4",
+    "fabric-network": "unstable-1.4",
     "mocha": "^5.2.0",
     "mockery": "^2.1.0",
     "nodemon": "^1.18.10",
@@ -59,17 +62,17 @@
     "sinon": "^7.1.1",
     "sinon-chai": "^3.3.0",
     "ts-mock-imports": "^1.2.3",
-    "ts-node": "^8.2.0",
+    "ts-node": "^8.3.0",
     "ts-watch": "^1.0.8",
     "tsc-watch": "^2.1.2",
     "tslint": "5.14.0",
-    "typescript": "^3.4.1"
+    "typescript": "^3.5.2"
   },
   "dependencies": {
     "@ampretia/x509": "^0.4.0",
     "asn1js": "^2.0.22",
-    "fabric-contract-api": "1.4.2-snapshot.28",
-    "fabric-shim": "1.4.2-snapshot.29",
+    "fabric-contract-api": "1.4.1",
+    "fabric-shim": "1.4.1",
     "get-params": "^0.1.2",
     "pkijs": "^2.1.76",
     "reflect-metadata": "^0.1.13",
