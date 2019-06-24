@@ -32,10 +32,10 @@
     ],
     "all": true,
     "check-coverage": true,
-    "statements": 78,
-    "branches": 71,
-    "functions": 62,
-    "lines": 77
+    "statements": 96,
+    "branches": 98,
+    "functions": 88,
+    "lines": 96
   },
   "author": "ibm-blockchain",
   "license": "Apache-2.0",
