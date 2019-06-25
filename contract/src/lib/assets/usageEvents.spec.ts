@@ -34,11 +34,7 @@ describe ('#UsageEvent', () => {
     });
 
     describe ('getClass', () => {
-<<<<<<< HEAD
         it ('should call generate class with the class name', () => {
-=======
-        it('should call generate class with the class name', () => {
->>>>>>> 727ffa5... finished assets tests
             const generateClassSpy = sandbox.stub(Asset, 'generateClass');
 
             UsageEvent.getClass();
