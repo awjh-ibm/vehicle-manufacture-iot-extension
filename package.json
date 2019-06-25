@@ -1,6 +1,6 @@
 {
   "name": "vehicle-manufacture-iot-extension",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The lifecycle of a vehicle using Hyperledger Fabric",
   "main": "index.js",
   "dependencies": {
@@ -27,7 +27,8 @@
     "exact_paths_method": "INCLUDE",
     "exact_paths": [
       "apps",
-      "contract"
+      "contract",
+      "scripts"
     ],
     "file_type_method": "EXCLUDE",
     "file_types": [
@@ -40,7 +41,9 @@
       ".PNG",
       ".tgz",
       ".xml",
-      ".tmpl"
+      ".tmpl",
+      ".yaml",
+      ""
     ],
     "default_format": {
       "eachLine": {
