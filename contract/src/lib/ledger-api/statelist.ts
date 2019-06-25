@@ -32,13 +32,15 @@ export class StateList<T extends State> {
     }
 
     public async add(state: T): Promise<void> {
-        const key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
+        const stateKey = state.getKey();
 
-        if (await this.exists(key)) {
-            throw new Error(`Cannot add state. State already exists for key ${key}`);
+        if (await this.exists(stateKey)) {
+            throw new Error(`Cannot add state. State already exists for key ${stateKey}`);
         }
 
         const data = state.serialize();
+
+        const key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
 
         await this.ctx.stub.putState(key, data);
     }
@@ -100,11 +102,13 @@ export class StateList<T extends State> {
     }
 
     public async update(state: T): Promise<void> {
-        const key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
+        const stateKey = state.getKey();
 
-        if (!(await this.exists(key))) {
-            throw new Error(`Cannot update state. No state exists for key ${key}`);
+        if (!(await this.exists(stateKey))) {
+            throw new Error(`Cannot update state. No state exists for key ${stateKey}`);
         }
+
+        const key = this.ctx.stub.createCompositeKey(this.name, state.getSplitKey());
 
         const data = state.serialize();
 

@@ -47,6 +47,7 @@ describe ('#StateList', () => {
 
         mockState = sinon.createStubInstance(State);
         mockState.getSplitKey.returns(['some', 'split', 'key']);
+        mockState.getKey.returns('state key');
 
         splitKeyStub = sandbox.stub(State, 'splitKey').returns(['some', 'other', 'split', 'key']);
 
@@ -75,13 +76,15 @@ describe ('#StateList', () => {
             const existsStub = sandbox.stub(stateList, 'exists').resolves(true);
 
             await stateList.add(mockState).should.be.rejectedWith(
-                'Cannot add state. State already exists for key some key',
+                'Cannot add state. State already exists for key state key',
             );
 
-            mockState.getSplitKey.should.have.been.calledOnceWithExactly();
+            existsStub.should.have.been.calledOnceWithExactly('state key');
+            // tslint:disable-next-line:no-unused-expression
+            mockState.getSplitKey.should.not.have.been.called;
+            // tslint:disable-next-line:no-unused-expression
             (mockContext.stub as sinon.SinonStubbedInstance<ChaincodeStub>).createCompositeKey
-                .should.have.been.calledOnceWithExactly('some list name', ['some', 'split', 'key']);
-            existsStub.should.have.been.calledOnceWithExactly('some key');
+                .should.not.have.been.called;
             // tslint:disable-next-line:no-unused-expression
             mockState.serialize.should.not.have.been.called;
             // tslint:disable-next-line:no-unused-expression
@@ -97,7 +100,7 @@ describe ('#StateList', () => {
             (mockContext.stub as sinon.SinonStubbedInstance<ChaincodeStub>).createCompositeKey
                 .should.have.been.calledOnceWithExactly('some list name', ['some', 'split', 'key']);
             mockState.serialize.should.have.been.calledOnceWithExactly();
-            existsStub.should.have.been.calledOnceWithExactly('some key');
+            existsStub.should.have.been.calledOnceWithExactly('state key');
             (mockContext.stub as sinon.SinonStubbedInstance<ChaincodeStub>).putState
                 .should.have.been.calledOnceWithExactly('some key', 'some serialized value');
         });
@@ -210,13 +213,15 @@ describe ('#StateList', () => {
             const existsStub = sandbox.stub(stateList, 'exists').resolves(false);
 
             await stateList.update(mockState).should.be.rejectedWith(
-                'Cannot update state. No state exists for key some key',
+                'Cannot update state. No state exists for key state key',
             );
 
-            mockState.getSplitKey.should.have.been.calledOnceWithExactly();
+            existsStub.should.have.been.calledOnceWithExactly('state key');
+            // tslint:disable-next-line:no-unused-expression
+            mockState.getSplitKey.should.not.have.been.called;
+            // tslint:disable-next-line:no-unused-expression
             (mockContext.stub as sinon.SinonStubbedInstance<ChaincodeStub>).createCompositeKey
-                .should.have.been.calledOnceWithExactly('some list name', ['some', 'split', 'key']);
-            existsStub.should.have.been.calledOnceWithExactly('some key');
+                .should.not.have.been.called;
             // tslint:disable-next-line:no-unused-expression
             mockState.serialize.should.not.have.been.called;
             // tslint:disable-next-line:no-unused-expression
@@ -232,7 +237,7 @@ describe ('#StateList', () => {
             (mockContext.stub as sinon.SinonStubbedInstance<ChaincodeStub>).createCompositeKey
                 .should.have.been.calledOnceWithExactly('some list name', ['some', 'split', 'key']);
             mockState.serialize.should.have.been.calledOnceWithExactly();
-            existsStub.should.have.been.calledOnceWithExactly('some key');
+            existsStub.should.have.been.calledOnceWithExactly('state key');
             (mockContext.stub as sinon.SinonStubbedInstance<ChaincodeStub>).putState
                 .should.have.been.calledOnceWithExactly('some key', 'some serialized value');
         });
