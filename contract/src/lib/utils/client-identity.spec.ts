@@ -105,7 +105,7 @@ describe ('#ClientIdentity', () => {
         it ('should catch error from get participant list', async () => {
             const getStub = sinon.stub().rejects(new Error('sad error'));
 
-            mockContext.getParticipantList.returns({get: getStub});
+            (mockContext as any).participantList = {get: getStub};
 
             const ci = new VehicleManufactureNetClientIdentity(mockContext);
 
@@ -125,8 +125,8 @@ describe ('#ClientIdentity', () => {
             const getParticipantStub = sinon.stub().resolves(mockParticipant);
             const getOrgStub = sinon.stub().rejects(new Error('sad error'));
 
-            mockContext.getParticipantList.returns({get: getParticipantStub});
-            mockContext.getOrganizationList.returns({get: getOrgStub});
+            (mockContext as any).participantList = {get: getParticipantStub};
+            (mockContext as any).organizationList = {get: getOrgStub};
 
             const ci = new VehicleManufactureNetClientIdentity(mockContext);
 
@@ -151,8 +151,8 @@ describe ('#ClientIdentity', () => {
             const getParticipantStub = sinon.stub().resolves(mockParticipant);
             const getOrgStub = sinon.stub().resolves(mockOrg);
 
-            mockContext.getParticipantList.returns({get: getParticipantStub});
-            mockContext.getOrganizationList.returns({get: getOrgStub});
+            (mockContext as any).participantList = {get: getParticipantStub};
+            (mockContext as any).organizationList = {get: getOrgStub};
 
             const ci = new VehicleManufactureNetClientIdentity(mockContext);
 

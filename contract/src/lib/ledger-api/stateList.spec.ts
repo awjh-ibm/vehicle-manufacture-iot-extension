@@ -60,8 +60,8 @@ describe ('#StateList', () => {
     describe ('constructor', () => {
         it ('should assign values', () => {
             (stateList as any).ctx.should.deep.equal(mockContext);
-            (stateList as any).name.should.deep.equal('some list name');
-            (stateList as any).supportedClasses.should.deep.equal(new Map());
+            stateList.name.should.deep.equal('some list name');
+            stateList.supportedClasses.should.deep.equal(new Map());
         });
     });
 
@@ -355,7 +355,7 @@ describe ('#StateList', () => {
         it ('should set supported classes', () => {
             stateList.use(GoodClass as any, AnotherGoodClass as any);
 
-            (stateList as any).supportedClasses.should.deep.equal(
+            stateList.supportedClasses.should.deep.equal(
                 new Map([['some class', GoodClass], ['some other class', AnotherGoodClass]],
             ));
         });

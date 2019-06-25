@@ -22,8 +22,8 @@ const logger = newLogger('STATELIST');
 export class StateList<T extends State> {
 
     public readonly name: string;
+    public readonly supportedClasses: Map<string, IState<T>>;
     private ctx: Context;
-    private supportedClasses: Map<string, IState<T>>;
 
     constructor(ctx: Context, listName: string) {
         this.ctx = ctx;

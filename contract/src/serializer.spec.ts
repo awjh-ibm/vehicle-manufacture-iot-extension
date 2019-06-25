@@ -53,6 +53,18 @@ describe ('#Serializer', () => {
             serializeStub.should.have.been.calledOnceWithExactly('some original result');
             toBufferStub.should.have.been.calledOnceWithExactly('some serialized result', {}, 'some prefix');
         });
+
+        it ('should call seriakuze then return the super to buffer when schema null', () => {
+            const myBuffer = Buffer.from('some buffer');
+
+            const toBufferStub = sandbox.stub(FabricJSONSerializer.prototype, 'toBuffer').returns(myBuffer);
+            const serializeStub = sandbox.stub(serializer as any, 'serialize').returns('some serialized result');
+
+            serializer.toBuffer('some original result', undefined, 'some prefix').should.deep.equal(myBuffer);
+
+            serializeStub.should.have.been.calledOnceWithExactly('some original result');
+            toBufferStub.should.have.been.calledOnceWithExactly('some serialized result', {}, 'some prefix');
+        });
     });
 
     describe ('serialize', () => {

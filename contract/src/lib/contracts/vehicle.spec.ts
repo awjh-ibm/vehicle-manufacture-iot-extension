@@ -82,13 +82,13 @@ describe ('#VehicleContract', () => {
 
         clientIdentity.loadParticipant.returns({organization, participant});
 
-        ctx.getClientIdentity.returns(clientIdentity);
-        ctx.getParticipantList.returns(participantList);
-        ctx.getVehicleList.returns(vehicleList);
-        ctx.getPolicyList.returns(policyList);
-        ctx.getOrderList.returns(orderList);
-        ctx.getUsageList.returns(usageList);
-        ctx.stub = stub;
+        (ctx as any).clientIdentity = clientIdentity;
+        (ctx as any).participantList = participantList;
+        (ctx as any).vehicleList = vehicleList;
+        (ctx as any).policyList = policyList;
+        (ctx as any).orderList = orderList;
+        (ctx as any).usageList = usageList;
+        (ctx as any).stub = stub;
     });
 
     afterEach(() => {
@@ -187,7 +187,7 @@ describe ('#VehicleContract', () => {
             participant.hasRole.returns(false).withArgs(Roles.ORDER_READ).returns(true);
 
             organization = sinon.createStubInstance(Manufacturer);
-            organization.id = 'some org id';
+            (organization as any).id = 'some org id';
             clientIdentity.loadParticipant.returns({organization, participant});
 
             const fakeOrder = sinon.createStubInstance(Order);
@@ -734,7 +734,7 @@ describe ('#VehicleContract', () => {
             participant.hasRole.returns(false).withArgs(Roles.POLICY_READ).returns(true);
 
             organization = sinon.createStubInstance(Insurer);
-            organization.id = 'some org id';
+            (organization as any).id = 'some org id';
             clientIdentity.loadParticipant.returns({organization, participant});
 
             const fakePolicy = sinon.createStubInstance(Policy);
@@ -776,7 +776,7 @@ describe ('#VehicleContract', () => {
             participant.hasRole.returns(false).withArgs(Roles.POLICY_READ).returns(true);
 
             organization = sinon.createStubInstance(Insurer);
-            organization.id = 'some org';
+            (organization as any).id = 'some org';
             clientIdentity.loadParticipant.returns({organization, participant});
 
             const fakePolicy = sinon.createStubInstance(Policy);
@@ -793,7 +793,7 @@ describe ('#VehicleContract', () => {
             participant.hasRole.returns(false).withArgs(Roles.POLICY_READ).returns(true);
 
             organization = sinon.createStubInstance(Insurer);
-            organization.id = 'some org';
+            (organization as any).id = 'some org';
             clientIdentity.loadParticipant.returns({organization, participant});
 
             const fakePolicy = sinon.createStubInstance(Policy);

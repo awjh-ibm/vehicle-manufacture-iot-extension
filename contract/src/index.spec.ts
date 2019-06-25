@@ -12,18 +12,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-import { Object } from 'fabric-contract-api';
-import { Participant } from './participant';
-
-@Object()
-export class Task extends Participant {
-    public static getClass() {
-        return Participant.generateClass(Task.name);
-    }
-
-    constructor(
-        id: string, roles: string[], orgId: string,
-    ) {
-        super(id, roles, orgId, Task.name);
-    }
-}
+import './index';

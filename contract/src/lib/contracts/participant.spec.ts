@@ -44,9 +44,9 @@ describe ('#ParticipantContract', () => {
         organizationList = sinon.createStubInstance(OrganizationList);
         participantList = sinon.createStubInstance(ParticipantList);
 
-        ctx.getOrganizationList.returns(organizationList);
-        ctx.getParticipantList.returns(participantList);
-        ctx.getClientIdentity.returns(clientIdentity);
+        (ctx as any).organizationList = organizationList;
+        (ctx as any).participantList = participantList;
+        (ctx as any).clientIdentity = clientIdentity;
     });
 
     afterEach(() => {
@@ -170,7 +170,7 @@ describe ('#ParticipantContract', () => {
 });
 
 function stubAttribute(ctx, attr, value) {
-    ctx.getClientIdentity()
+    ctx.clientIdentity
         .getAttributeValue
         .withArgs(attr)
         .returns(value);
