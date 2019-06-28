@@ -1,10 +1,9 @@
 {
   "name": "vehicle-manufacture-contract",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
-    "preinstall": "sh ./../scripts/generate-config.sh",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "start": "fabric-chaincode-node start",
     "start:docker": "mkdir tmp; docker exec arium_cli bash -c \"cd /etc/hyperledger/contract; npm rebuild\"; tsc-watch --onSuccess \"npm run start:all\"",
@@ -17,7 +16,7 @@
     "prepublishOnly": "npm run build",
     "pretest": "npm run lint",
     "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
-    "test:functional": "mocha -r ts-node/register functionalTests/*"
+    "test:functional": "bash ./../scripts/start.sh && mocha -r ts-node/register functionalTests/*"
   },
   "nyc": {
     "extension": [

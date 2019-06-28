@@ -36,7 +36,7 @@ echo "# SET ENV VARS FOR DOCKER #"
 echo "###########################"
 set_docker_env $NETWORK_DOCKER_COMPOSE_DIR
 
-./generate_config.sh
+bash $BASEDIR/generate-config.sh
 
 echo "#####################"
 echo "# CHAINCODE INSTALL #"
