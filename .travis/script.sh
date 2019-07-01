@@ -77,5 +77,3 @@ if [ ! -z "$TRAVIS_TAG" ]; then
 elif [ "$SHOULD_DEPLOY" = true ]; then
   deploy ${VERSION}
 fi
-
-./.travis/image-deploy.sh
